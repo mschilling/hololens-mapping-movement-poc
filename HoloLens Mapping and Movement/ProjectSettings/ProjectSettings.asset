@@ -388,11 +388,12 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: HoloLens Mapping and Movement
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\Ruben\Documents\hololens-mapping-movement-poc\HoloLens
+    Mapping and Movement\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 80ad42dd97c7d301
   metroApplicationDescription: HoloLens Mapping and Movement
   wsaImages: {}
   metroTileShortName: 
