@@ -388,8 +388,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: HoloLens Mapping and Movement
   metroPackageVersion: 
-  metroCertificatePath: C:\Users\Ruben\Documents\hololens-mapping-movement-poc\HoloLens
-    Mapping and Movement\Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
@@ -466,7 +465,9 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    UNet: 0
   cloudProjectId: 
   projectName: 
   organizationId: 
