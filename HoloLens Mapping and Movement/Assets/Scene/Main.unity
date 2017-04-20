@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomModel: {fileID: 100002, guid: cebd964a6a04e1443938f8de6b876900, type: 3}
-  SimulatedUpdatePeriodInSeconds: -1
+  SimulatedUpdatePeriodInSeconds: 10
 --- !u!1 &1549292005
 GameObject:
   m_ObjectHideFlags: 0
