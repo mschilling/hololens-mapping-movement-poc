@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement", "Assembly-CSharp.csproj", "{EEF894BE-DD06-B0E9-5E69-9504B5633A59}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement", "HoloLens Mapping and Movement.csproj", "{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement", "Assembly-CSharp-Editor.csproj", "{C0EFA8BE-4440-8345-9E70-428641D70CA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement.Editor", "HoloLens Mapping and Movement.Editor.csproj", "{103E0FB6-DAC8-9E71-285E-097DF76B6114}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,19 +11,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEF894BE-DD06-B0E9-5E69-9504B5633A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEF894BE-DD06-B0E9-5E69-9504B5633A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEF894BE-DD06-B0E9-5E69-9504B5633A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEF894BE-DD06-B0E9-5E69-9504B5633A59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0EFA8BE-4440-8345-9E70-428641D70CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0EFA8BE-4440-8345-9E70-428641D70CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0EFA8BE-4440-8345-9E70-428641D70CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0EFA8BE-4440-8345-9E70-428641D70CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
