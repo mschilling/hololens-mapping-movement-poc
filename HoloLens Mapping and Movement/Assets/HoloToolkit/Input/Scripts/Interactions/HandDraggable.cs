@@ -42,14 +42,6 @@ namespace HoloToolkit.Unity.InputModule
 
         public RotationModeEnum RotationMode = RotationModeEnum.Default;
 
-        [Tooltip("Controls the speed at which the object will interpolate toward the desired position")]
-        [Range(0.01f, 1.0f)]
-        public float PositionLerpSpeed = 0.2f;
-
-        [Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
-        [Range(0.01f, 1.0f)]
-        public float RotationLerpSpeed = 0.2f;
-
         public bool IsDraggingEnabled = true;
 
         private Camera mainCamera;
@@ -222,10 +214,9 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             // Apply Final Position
-            HostTransform.position = Vector3.Lerp(HostTransform.position, draggingPosition + mainCamera.transform.TransformDirection(objRefGrabPoint), PositionLerpSpeed);
+            HostTransform.position = draggingPosition + mainCamera.transform.TransformDirection(objRefGrabPoint);
             // Apply Final Rotation
-            HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
-
+            HostTransform.rotation = draggingRotation;
             if (RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)		
             {		
                 Quaternion upRotation = Quaternion.FromToRotation(HostTransform.up, Vector3.up);		

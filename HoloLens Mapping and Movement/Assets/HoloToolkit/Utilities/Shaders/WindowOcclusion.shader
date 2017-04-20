@@ -39,7 +39,7 @@ Shader "HoloToolkit/WindowOcclusion"
             {
                 UNITY_SETUP_INSTANCE_ID(v);
                 v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
+                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 return o;
             }

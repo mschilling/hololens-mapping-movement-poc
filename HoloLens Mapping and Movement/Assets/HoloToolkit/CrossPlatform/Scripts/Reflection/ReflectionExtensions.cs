@@ -9,6 +9,7 @@ namespace HoloToolkit
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Text;
 
     public static class ReflectionExtensions
     {
@@ -37,7 +38,7 @@ namespace HoloToolkit
             return result;
         }
 
-        public static MethodInfo GetMethod(this Type type, string methodName, BindingFlags bindingAttr, Object binder, Type[] parameters, Object[] modifiers)
+        public static MethodInfo GetMethod(this Type type, string methodName, BindingFlags bindingAttr,  Object binder, Type[] parameters, Object[] modifiers)
         {
             var result = type.GetTypeInfo().GetDeclaredMethod(methodName);
             if (result == null)
@@ -100,7 +101,7 @@ namespace HoloToolkit
 
         public static IEnumerable<FieldInfo> GetFields(this Type type)
         {
-            return GetFields(type, (BindingFlags)0x0);
+            return  GetFields(type, (BindingFlags)0x0);
         }
 
         public static IEnumerable<FieldInfo> GetFields(this Type type, BindingFlags flags)
@@ -125,12 +126,12 @@ namespace HoloToolkit
 
         public static PropertyInfo GetProperty(this Type type, string propertyName, BindingFlags flags)
         {
-            return type.GetRuntimeProperty(propertyName);
+            return type.GetRuntimeProperty (propertyName);
         }
 
         public static PropertyInfo GetProperty(this Type type, string propertyName, Type returnType)
         {
-            return type.GetRuntimeProperty(propertyName);
+            return type.GetRuntimeProperty (propertyName);
         }
 
         public static IEnumerable<TypeInfo> GetTypes(this Assembly assembly)

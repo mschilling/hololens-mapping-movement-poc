@@ -401,7 +401,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 80ad42dd97c7d301
+  metroCertificateNotAfter: 00d095f6e5d8d301
   metroApplicationDescription: HoloLens Mapping and Movement
   wsaImages: {}
   metroTileShortName: 
