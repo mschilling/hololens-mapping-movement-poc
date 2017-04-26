@@ -243,7 +243,7 @@ MonoBehaviour:
   PhysicsLayer: 31
   surfaceMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   autoStartObserver: 1
-  drawVisualMeshes: 1
+  drawVisualMeshes: 0
   castShadows: 0
 --- !u!114 &1285200974
 MonoBehaviour:
@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d883c0118351e4890753200e0ac916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomModel: {fileID: 100002, guid: cebd964a6a04e1443938f8de6b876900, type: 3}
-  SimulatedUpdatePeriodInSeconds: -1
+  RoomModel: {fileID: 100002, guid: 507ff014a152ce24c97c549f1ff51e0c, type: 3}
+  SimulatedUpdatePeriodInSeconds: 1
 --- !u!1 &1435398709
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImportMeshPeriod: 1
   MeshMaterial: {fileID: 2100000, guid: ddc2ff62e97ce6d41991784c3aa8e233, type: 2}
-  MaxFrameTime: 5
+  MaxFrameTime: 10
   CreateMeshColliders: 1
 --- !u!1 &1549292005
 GameObject:
