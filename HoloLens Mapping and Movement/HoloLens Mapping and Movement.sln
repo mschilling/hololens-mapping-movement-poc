@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement", "HoloLens Mapping and Movement.csproj", "{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement.Editor", "HoloLens Mapping and Movement.Editor.csproj", "{103E0FB6-DAC8-9E71-285E-097DF76B6114}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103E0FB6-DAC8-9E71-285E-097DF76B6114}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
