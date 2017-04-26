@@ -316,4 +316,7 @@ __pycache__/
 # tools/**
 # !tools/packages.config
 
+# General
+log.txt
+
 # End of https://www.gitignore.io/api/visualstudio,visualstudiocode,unity
