@@ -12,7 +12,7 @@ nuget restore "%~dp0\HoloLens Mapping and Movement\UWP\project.json"
 echo.
 echo Start APPX build
 call "%vs140comnTools%\VsDevCmd.bat"
-MSBuild.exe /nologo /verbosity:d "/target:Build" /p:Configuration=Debug /p:Platform="x86" /p:OutDir=bin /p:GenerateProjectSpecificOutputFolder=true /p:StyleCopTreatErrorsAsWarnings=false /maxcpucount "%~dp0\HoloLens Mapping and Movement\App\HoloLens Mapping and Movement.sln"
+MSBuild.exe /nologo /verbosity:diag /target:Build /p:Configuration=Debug /p:Platform="x86" /p:OutDir=bin /p:GenerateProjectSpecificOutputFolder=true /p:StyleCopTreatErrorsAsWarnings=false /maxcpucount "%~dp0\HoloLens Mapping and Movement\App\HoloLens Mapping and Movement.sln"
 
 echo.
 echo Done
