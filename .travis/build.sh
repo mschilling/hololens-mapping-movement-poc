@@ -48,7 +48,8 @@ echo 'Logs from build'
 cat $(pwd)/unity.log
 
 
-# echo 'Attempting to zip builds'
+echo 'Attempting to zip builds'
+zip -r $(pwd)"/HoloLens Mapping and Movement/App/windows.zip" $(pwd)"/HoloLens Mapping and Movement/App"
 # zip -r $(pwd)/Build/linux.zip $(pwd)/Build/linux/
 # zip -r $(pwd)/Build/mac.zip $(pwd)/Build/osx/
 # zip -r $(pwd)/Build/windows.zip $(pwd)/Build/windows/
