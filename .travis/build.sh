@@ -12,6 +12,8 @@ echo "Attempting to build $project for Windows"
     -wsaUWPBuildType D3D \
     -executeMethod HoloToolkit.Unity.BuildSLNUtilities.PerformBuild_CommandLine \
     -batchmode \
+    -nographics \
+    -silent-crashes \
     -quit
 
 # echo "Attempting to build $project for Windows"
