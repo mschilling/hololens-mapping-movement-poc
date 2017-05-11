@@ -168,7 +168,7 @@ public class Placeable : MonoBehaviour
             float dist = (gameObject.transform.position - targetPosition).magnitude;
             if (dist > 0)
             {
-                gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, targetPosition, placementVelocity / dist);
+                //gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, targetPosition, placementVelocity / dist);
             }
             else
             {
