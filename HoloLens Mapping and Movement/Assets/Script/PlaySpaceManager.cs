@@ -80,6 +80,8 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
                     SpatialMappingManager.Instance.StopObserver();
                 }
 
+                SpatialUnderstanding.Instance.RequestFinishScan();
+
                 // Call CreatePlanes() to generate planes.
                 CreatePlanes();
 
