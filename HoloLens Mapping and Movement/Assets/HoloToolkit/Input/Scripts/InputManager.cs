@@ -614,6 +614,5 @@ namespace HoloToolkit.Unity.InputModule
             // Pass handler through HandleEvent to perform modal/fallback logic
             HandleEvent(navigationEventData, OnNavigationCanceledEventHandler);
         }
-
     }
 }
