@@ -10,11 +10,10 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     public Camera camera;
     private GameObject player;
 
-    public float speed = 1;
+    public float speed = 0.1f;
 
     private Transform target;
     private Vector3 hitPoint;
-    private float step;
     private Vector3 hit;
 
     // Use this for initialization
@@ -39,8 +38,8 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         else if (player.transform.position.x != hitPoint.x)
         {
             Debug.Log("Moving player object from: " + player.transform.position.ToString() + " to : " + hitPoint.ToString());
-            player.transform.position = Vector3.MoveTowards(player.transform.position, hitPoint, step);
-        }
+            player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
+        } 
     }
 
     public void OnInputClicked(InputClickedEventData eventData)
@@ -60,7 +59,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
                 Physics.DefaultRaycastLayers))
         {
             hitPoint = hitInfo.point;
-            step = speed * Time.deltaTime;
 
             // Do something with the object that was hit by the raycast.
             Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
