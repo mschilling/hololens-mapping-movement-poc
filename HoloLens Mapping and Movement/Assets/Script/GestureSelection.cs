@@ -8,6 +8,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
     public InputManager input;
     public Camera camera;
+    private GameObject player;
 
     public float speed = 10;
 
@@ -18,6 +19,9 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
 	}
 
     public void OnInputClicked(InputClickedEventData eventData)
