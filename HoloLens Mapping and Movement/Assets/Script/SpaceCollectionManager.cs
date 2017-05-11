@@ -94,6 +94,7 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
             // If we do find a good plane we can do something smarter.
             if (index >= 0)
             {
+                Debug.Log("Found a good plane!");
                 UsedPlanes.Add(index);
                 GameObject surface = surfaces[index];
                 SurfacePlane plane = surface.GetComponent<SurfacePlane>();

@@ -249,6 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9aa846cbfd5940806ee1ee61cf0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &980115517 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20000013304850028, guid: d379ed0a5618c9f479f58bd83a2d0ad3,
+    type: 2}
+  m_PrefabInternal: {fileID: 980115509}
 --- !u!4 &1124728405 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013535415816, guid: b2db04283121ca74495c2ee000fb4243,
@@ -558,6 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 245253722}
+  camera: {fileID: 980115517}
+  speed: 10
 --- !u!1 &1789514121
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limitScanningByTime: 1
-  scanTime: 30
+  scanTime: 15
   defaultMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   secondaryMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
   minimumFloors: 1
