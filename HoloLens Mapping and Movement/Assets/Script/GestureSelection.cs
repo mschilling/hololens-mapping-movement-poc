@@ -10,11 +10,12 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     public Camera camera;
     private GameObject player;
 
-    public float speed = 10;
+    public float speed = 1;
 
     private Transform target;
     private Vector3 hitPoint;
     private float step;
+    private Vector3 hit;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +24,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         if (player == null)
         {
             Debug.Log("Looking for player object!");
@@ -50,17 +51,19 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
     public void CastRayToWorld()
     {
-        RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawLine(ray.origin, Camera.main.transform.forward * 50000000, Color.red);
-
-        if (Physics.Raycast(ray, out hit))
+        RaycastHit hitInfo;
+        if (Physics.Raycast(
+                Camera.main.transform.position,
+                Camera.main.transform.forward,
+                out hitInfo,
+                20.0f,
+                Physics.DefaultRaycastLayers))
         {
-            hitPoint = hit.point;
+            hitPoint = hitInfo.point;
             step = speed * Time.deltaTime;
 
             // Do something with the object that was hit by the raycast.
-            Debug.Log("World Location: " + hit.point.ToString("F4"));
+            Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
         }
     }
 }
