@@ -72,7 +72,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
                 Physics.DefaultRaycastLayers))
         {
             hitPoint = hitInfo.point;
-            hitPoint.y = player.transform.position.y;
 
             // Do something with the object that was hit by the raycast.
             Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
