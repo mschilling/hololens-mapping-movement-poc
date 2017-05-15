@@ -6,6 +6,7 @@ using System;
 
 public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
+    public PlaySpaceManager playSpaceManager;
     public InputManager input;
     public Camera camera;
     private GameObject player;
@@ -23,7 +24,9 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if (!playSpaceManager.finishedScanning())
+            return;
+
         if (player == null)
         {
             Debug.Log("Looking for player object!");
@@ -45,7 +48,15 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     public void OnInputClicked(InputClickedEventData eventData)
     {
         Debug.Log("Clicked!");
-        CastRayToWorld();
+
+        if (!playSpaceManager.finishedScanning())
+        {
+            playSpaceManager.finishScanning();
+        }
+        else
+        {
+            CastRayToWorld();
+        }
     }
 
     public void CastRayToWorld()

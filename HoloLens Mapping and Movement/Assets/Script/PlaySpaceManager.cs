@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using HoloToolkit.Unity.SpatialMapping;
 using HoloToolkit.Unity;
-using System.Diagnostics;
 
 /// <summary>
 /// The SurfaceManager class allows applications to scan the environment for a specified amount of time 
@@ -11,12 +10,6 @@ using System.Diagnostics;
 /// </summary>
 public class PlaySpaceManager : Singleton<PlaySpaceManager>
 {
-
-    [Tooltip("When checked, the SurfaceObserver will stop running after a specified amount of time.")]
-    public bool limitScanningByTime = true;
-
-    [Tooltip("How much time (in seconds) that the SurfaceObserver will run after being started; used when 'Limit Scanning By Time' is checked.")]
-    public float scanTime = 30.0f;
 
     [Tooltip("Material to use when rendering Spatial Mapping meshes while the observer is running.")]
     public Material defaultMaterial;
@@ -34,6 +27,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     /// Indicates if processing of the surface meshes is complete.
     /// </summary>
     private bool meshesProcessed = false;
+    private bool finishScanningProcessing = false;
 
     /// <summary>
     /// GameObject initialization.
@@ -47,45 +41,30 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         SurfaceMeshesToPlanes.Instance.MakePlanesComplete += SurfaceMeshesToPlanes_MakePlanesComplete;
     }
 
-    /// <summary>
-    /// Called once per frame.
-    /// </summary>
-    private void Update()
+    public void finishScanning()
     {
-        // Check to see if the spatial mapping data has been processed
-        // and if we are limiting how much time the user can spend scanning.
-        if (!meshesProcessed && limitScanningByTime)
+        if(!meshesProcessed)
         {
-            // If we have not processed the spatial mapping data
-            // and scanning time is limited...
+            Debug.Log("Trying to finish scanning...");
+            // The user should be done scanning their environment,
+            // so start processing the spatial mapping data...
 
-            // Check to see if enough scanning time has passed
-            // since starting the observer.
-            if (limitScanningByTime && ((Time.time - SpatialMappingManager.Instance.StartTime) < scanTime))
+            // Check if IsObserverRunning() is true on the
+            // SpatialMappingManager.Instance.
+            if (SpatialMappingManager.Instance.IsObserverRunning())
             {
-                // If we have a limited scanning time, then we should wait until
-                // enough time has passed before processing the mesh.
+                // If running, Stop the observer by calling
+                // StopObserver() on the SpatialMappingManager.Instance.
+                SpatialMappingManager.Instance.StopObserver();
             }
-            else
-            {
-                // The user should be done scanning their environment,
-                // so start processing the spatial mapping data...
 
-                // Check if IsObserverRunning() is true on the
-                // SpatialMappingManager.Instance.
-                if (SpatialMappingManager.Instance.IsObserverRunning())
-                {
-                    // If running, Stop the observer by calling
-                    // StopObserver() on the SpatialMappingManager.Instance.
-                    SpatialMappingManager.Instance.StopObserver();
-                }
+            SpatialUnderstanding.Instance.RequestFinishScan();
 
-                // Call CreatePlanes() to generate planes.
-                CreatePlanes();
+            // Call CreatePlanes() to generate planes.
+            CreatePlanes();
 
-                // Set meshesProcessed to true.
-                meshesProcessed = true;
-            }
+            // Set meshesProcessed to true.
+            meshesProcessed = true;
         }
     }
 
@@ -114,14 +93,14 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         // Assign the result to the 'vertical' list.
         vertical = SurfaceMeshesToPlanes.Instance.GetActivePlanes(PlaneTypes.Wall);
 
-        System.Diagnostics.Debug.WriteLine("Finished Planes");
+        Debug.Log("Finished Planes");
 
         // Check to see if we have enough horizontal planes (minimumFloors)
         // and vertical planes (minimumWalls), to set holograms on in the world.
         if (horizontal.Count >= minimumFloors && vertical.Count >= minimumWalls)
         {
             // We have enough floors and walls to place our holograms on...
-            System.Diagnostics.Debug.WriteLine("Enough planes!");
+            Debug.Log("Enough planes!");
 
             // Let's reduce our triangle count by removing triangles
             // from SpatialMapping meshes that intersect with our active planes.
@@ -145,7 +124,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         else
         {
             // We do not have enough floors/walls to place our holograms on...
-            System.Diagnostics.Debug.WriteLine("Not enough Planes...");
+            Debug.Log("Not enough Planes...");
 
             // Re-enter scanning mode so the user can find more surfaces by 
             // calling StartObserver() on the SpatialMappingManager.Instance.
@@ -192,5 +171,10 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         {
             SurfaceMeshesToPlanes.Instance.MakePlanesComplete -= SurfaceMeshesToPlanes_MakePlanesComplete;
         }
+    }
+
+    public bool finishedScanning()
+    {
+        return meshesProcessed;
     }
 }
