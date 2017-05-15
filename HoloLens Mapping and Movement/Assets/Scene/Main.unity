@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dea80a31fc1964797d1e5e8f7cbf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSpaceManager: {fileID: 1789514125}
   input: {fileID: 245253722}
   camera: {fileID: 980115517}
   speed: 10
@@ -636,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b8bdcc5cd35e4a9e4310644389406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitScanningByTime: 1
+  limitScanningByTime: 0
   scanTime: 15
   defaultMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   secondaryMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
