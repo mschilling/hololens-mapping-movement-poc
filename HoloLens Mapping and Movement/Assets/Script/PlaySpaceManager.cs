@@ -11,12 +11,6 @@ using HoloToolkit.Unity;
 public class PlaySpaceManager : Singleton<PlaySpaceManager>
 {
 
-    [Tooltip("When checked, the SurfaceObserver will stop running after a specified amount of time.")]
-    public bool limitScanningByTime = true;
-
-    [Tooltip("How much time (in seconds) that the SurfaceObserver will run after being started; used when 'Limit Scanning By Time' is checked.")]
-    public float scanTime = 30.0f;
-
     [Tooltip("Material to use when rendering Spatial Mapping meshes while the observer is running.")]
     public Material defaultMaterial;
 
@@ -73,50 +67,6 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
             meshesProcessed = true;
         }
     }
-
-    /// <summary>
-    /// Called once per frame.
-    /// </summary>
-    /*private void Update()
-    {
-        // Check to see if the spatial mapping data has been processed
-        // and if we are limiting how much time the user can spend scanning.
-        if (!meshesProcessed && limitScanningByTime)
-        {
-            // If we have not processed the spatial mapping data
-            // and scanning time is limited...
-
-            // Check to see if enough scanning time has passed
-            // since starting the observer.
-            if (limitScanningByTime && ((Time.time - SpatialMappingManager.Instance.StartTime) < scanTime))
-            {
-                // If we have a limited scanning time, then we should wait until
-                // enough time has passed before processing the mesh.
-            }
-            else
-            {
-                // The user should be done scanning their environment,
-                // so start processing the spatial mapping data...
-
-                // Check if IsObserverRunning() is true on the
-                // SpatialMappingManager.Instance.
-                if (SpatialMappingManager.Instance.IsObserverRunning())
-                {
-                    // If running, Stop the observer by calling
-                    // StopObserver() on the SpatialMappingManager.Instance.
-                    SpatialMappingManager.Instance.StopObserver();
-                }
-
-                SpatialUnderstanding.Instance.RequestFinishScan();
-
-                // Call CreatePlanes() to generate planes.
-                CreatePlanes();
-
-                // Set meshesProcessed to true.
-                meshesProcessed = true;
-            }
-        }
-    }*/
 
 
     /// <summary>
