@@ -12,6 +12,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     private GameObject player;
 
     public float speed = 0.1f;
+    private bool clickedToMove = false;
 
     private Transform target;
     private Vector3 hitPoint;
@@ -27,7 +28,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         if (!playSpaceManager.finishedScanning())
             return;
 
-        if (player == null)
+        if (clickedToMove && player == null)
         {
             Debug.Log("Looking for player object!");
 
@@ -38,7 +39,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
                 Debug.Log("Found player object!");
             }
         }
-        else if (player.transform.position.x != hitPoint.x)
+        else if (clickedToMove && player.transform.position.x != hitPoint.x)
         {
             Debug.Log("Moving player object from: " + player.transform.position.ToString() + " to : " + hitPoint.ToString());
             player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
@@ -55,6 +56,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         }
         else
         {
+            clickedToMove = true;
             CastRayToWorld();
         }
     }
