@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65000010549037612}
   - component: {fileID: 23000010797497162}
   - component: {fileID: 114000011287056714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SurfacePlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,8 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaneThickness: 0.01
   UpNormalThreshold: 0.9
-  FloorBuffer: 0.099999994
-  CeilingBuffer: 0.099999994
+  FloorBuffer: 0.09999999
+  CeilingBuffer: 0.09999999
   WallMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   FloorMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   CeilingMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
