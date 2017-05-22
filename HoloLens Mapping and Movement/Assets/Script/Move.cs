@@ -24,19 +24,19 @@ public class Move : MonoBehaviour {
             }
 
             Vector3 target = pathNodes[0];
-            Debug.Log("Moving player object from: " + transform.position.ToString("F4") + " to : " + target.ToString("F4"));
             transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
         }
     }
 
     public void MoveToLocation(Vector3 target)
     {
+        Debug.Log("Moving player object from: " + transform.position.ToString("F4") + " to : " + target.ToString("F4"));
         CalculatePathToTarget(target);
     }
 
     private List<Vector3> CalculatePathToTarget(Vector3 target)
     {
-        //pathNodes.Clear();
+        pathNodes.Clear();
 
         Vector3 currPos = gameObject.transform.position;
 
