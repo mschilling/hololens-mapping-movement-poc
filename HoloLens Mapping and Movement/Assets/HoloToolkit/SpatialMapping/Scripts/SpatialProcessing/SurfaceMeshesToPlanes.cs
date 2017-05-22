@@ -260,6 +260,7 @@ namespace HoloToolkit.Unity.SpatialMapping
                     destPlane.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
 
+                GameObjectUtility.SetStaticEditorFlags(destPlane, StaticEditorFlags.NavigationStatic);
                 destPlane.transform.parent = planesParent.transform;
                 SurfacePlane surfacePlane = destPlane.GetComponent<SurfacePlane>();
 
