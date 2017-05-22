@@ -10,6 +10,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     public InputManager input;
     public Camera camera;
     private GameObject player;
+    private Move playerMove; 
 
     public float speed = 0.1f;
     private bool clickedToMove = false;
@@ -37,12 +38,14 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
             if(player != null)
             {
                 Debug.Log("Found player object!");
+                playerMove = player.GetComponent<Move>();
             }
         }
         else if (clickedToMove && player.transform.position.x != hitPoint.x)
         {
             Debug.Log("Moving player object from: " + player.transform.position.ToString() + " to : " + hitPoint.ToString());
-            player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
+           // player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
+            playerMove.MoveToLocation(hitPoint);
         } 
     }
 
@@ -75,6 +78,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
             // Do something with the object that was hit by the raycast.
             Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
+            playerMove.MoveToLocation(hitPoint);
         }
     }
 }

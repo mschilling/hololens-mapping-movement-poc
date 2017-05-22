@@ -9,8 +9,15 @@ public class Move : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void MoveToLocation(Vector3 target)
+    {
+
+    }
+
+    private ArrayList<Vector3> CalculatePathToTarget(Vector3 target)
+    {
+        Vector3 currPos = gameObject.transform.position;
+
+
+    }
 }
