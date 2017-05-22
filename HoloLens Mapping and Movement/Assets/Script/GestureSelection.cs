@@ -12,9 +12,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     private GameObject player;
     private Move playerMove; 
 
-    public float speed = 0.1f;
-    private bool clickedToMove = false;
-
     private Transform target;
     private Vector3 hitPoint;
     private Vector3 hit;
@@ -29,7 +26,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         if (!playSpaceManager.finishedScanning())
             return;
 
-        if (clickedToMove && player == null)
+        if (player == null)
         {
             Debug.Log("Looking for player object!");
 
@@ -41,12 +38,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
                 playerMove = player.GetComponent<Move>();
             }
         }
-        else if (clickedToMove && player.transform.position.x != hitPoint.x)
-        {
-            Debug.Log("Moving player object from: " + player.transform.position.ToString() + " to : " + hitPoint.ToString());
-           // player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
-            playerMove.MoveToLocation(hitPoint);
-        } 
     }
 
     public void OnInputClicked(InputClickedEventData eventData)
@@ -59,7 +50,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         }
         else
         {
-            clickedToMove = true;
             CastRayToWorld();
         }
     }
@@ -78,6 +68,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
             // Do something with the object that was hit by the raycast.
             Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
+
             playerMove.MoveToLocation(hitPoint);
         }
     }
