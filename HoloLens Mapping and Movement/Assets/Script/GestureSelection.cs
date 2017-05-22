@@ -10,7 +10,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
     public InputManager input;
     public Camera camera;
     private GameObject player;
-    private Move playerMove;
 
     public float speed = 0.1f;
     private bool clickedToMove = false;
@@ -37,7 +36,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
             if(player != null)
             {
-                playerMove = player.GetComponent<Move>();
                 Debug.Log("Found player object!");
             }
         }
@@ -45,7 +43,6 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         {
             Debug.Log("Moving player object from: " + player.transform.position.ToString() + " to : " + hitPoint.ToString());
             player.transform.position = Vector3.Lerp(player.transform.position, hitPoint, speed * 0.1f * Time.deltaTime);
-            playerMove.moveToPoint(hitPoint);
         } 
     }
 
