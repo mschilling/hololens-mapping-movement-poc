@@ -69,7 +69,7 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
             // Do something with the object that was hit by the raycast.
             Debug.Log("World Location: " + hitInfo.point.ToString("F4"));
 
-            playerMove.MoveToLocation(hitPoint);
+            playerMove.MoveToLocation(hitInfo.collider.gameObject, hitPoint);
         }
     }
 }
