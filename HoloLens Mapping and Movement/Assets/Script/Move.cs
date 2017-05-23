@@ -9,7 +9,8 @@ public class Move : MonoBehaviour {
     // Object movement speed
     public float speed = 0.5f;
     // Object max jump height
-    public float jumpSpeed = 4f;
+    public float maxJumpSpeed = 4f;
+    private float jumpSpeed = 0;
     // Gravity to be applied to object
     public float gravity = 0.5f;
 
@@ -74,7 +75,13 @@ public class Move : MonoBehaviour {
         if (controller.isGrounded && HasToJump())
         {
             // Not yet jumping but object has to jump to reach plane
+            jumpSpeed = maxJumpSpeed;
             Jump();         
+        }
+        else if(jumpSpeed > 0)
+        {
+            jumpSpeed -= 5 * Time.deltaTime;
+            Jump();
         }
 
         // Keep on walking...
@@ -84,7 +91,7 @@ public class Move : MonoBehaviour {
 
     private void Jump()
     {
-        moveDirection.y = jumpSpeed;
+        transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -151,6 +158,6 @@ public class Move : MonoBehaviour {
             return true;
         }
 
-        return false;
+        return true;
     }
 }
