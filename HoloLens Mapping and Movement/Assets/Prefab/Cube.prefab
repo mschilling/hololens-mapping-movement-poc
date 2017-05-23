@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e3b8dfab6792542b83da2473232673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  jumpSpeed: 2
+  speed: 0.7
+  maxJumpSpeed: 4
   gravity: 0.5
 --- !u!143 &143474021975566478
 CharacterController:

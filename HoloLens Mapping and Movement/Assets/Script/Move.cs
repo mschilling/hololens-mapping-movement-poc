@@ -37,7 +37,8 @@ public class Move : MonoBehaviour {
             {
                 MoveMethod();
             }
-        } else if(!controller.isGrounded)
+        }
+        else if(!controller.isGrounded)
         {
             moveDirection = transform.position;
             moveDirection.y -= gravity * Time.deltaTime;
@@ -71,6 +72,7 @@ public class Move : MonoBehaviour {
         // Make sure it is not magically able to fly
         moveDirection.y = transform.position.y;
 
+        Debug.Log("Has to jump: " + HasToJump());
         // Make sure the object is not in mid air
         if (controller.isGrounded && HasToJump())
         {
@@ -158,6 +160,6 @@ public class Move : MonoBehaviour {
             return true;
         }
 
-        return true;
+        return false;
     }
 }
