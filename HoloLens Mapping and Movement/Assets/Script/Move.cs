@@ -12,7 +12,8 @@ public class Move : MonoBehaviour {
     public float maxJumpSpeed = 4f;
     private float jumpSpeed = 0;
     // Gravity to be applied to object
-    public float gravity = 0.5f;
+    public float minGravity = 0.5f;
+    private float gravity = 0;
 
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
@@ -21,6 +22,7 @@ public class Move : MonoBehaviour {
     void Start () {
         pathNodes = new List<Node>();
         controller = GetComponent<CharacterController>();
+        gravity = minGravity;
 	}
 
     void Update()
@@ -40,9 +42,18 @@ public class Move : MonoBehaviour {
         }
         else if(!controller.isGrounded)
         {
+            // Reset the MoveVector
             moveDirection = transform.position;
-            moveDirection.y -= gravity * Time.deltaTime;
+            ApplyGravity();
+
+            //Apply our move Vector , remember to multiply by Time.delta
             controller.Move(moveDirection * Time.deltaTime);
+        } 
+        
+        // When on the ground reset gravity
+        if(controller.isGrounded)
+        {
+            gravity = minGravity;
         }
     }
 
@@ -67,33 +78,46 @@ public class Move : MonoBehaviour {
 
         // Normalize it and account for movement speed.
         moveDirection = GetCurrentTarget().target - transform.position;
-        moveDirection = moveDirection.normalized * speed;
+        moveDirection = moveDirection * speed;
 
         // Make sure it is not magically able to fly
         moveDirection.y = transform.position.y;
 
+        Debug.Log("Is grounded: " + controller.isGrounded);
         Debug.Log("Has to jump: " + HasToJump());
         // Make sure the object is not in mid air
         if (controller.isGrounded && HasToJump())
         {
             // Not yet jumping but object has to jump to reach plane
+            Debug.Log("Jumping time!");
             jumpSpeed = maxJumpSpeed;
             Jump();         
         }
         else if(jumpSpeed > 0)
         {
+            Debug.Log("Still Jumping time...");
             jumpSpeed -= 5 * Time.deltaTime;
             Jump();
         }
 
         // Keep on walking...
-        moveDirection.y -= gravity * Time.deltaTime;
+        ApplyGravity();
+        
+        Debug.Log("Current Y value: " + transform.position.y + " -> Target Y value: " + moveDirection.y);
+        Debug.Log("Substract value: " + gravity * Time.deltaTime);
+
         controller.Move(moveDirection * Time.deltaTime);
     }
 
     private void Jump()
     {
         transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
+    }
+
+    private void ApplyGravity()
+    {
+        gravity += minGravity;
+        moveDirection.y -= gravity * Time.deltaTime;
     }
 
     /// <summary>
@@ -118,6 +142,12 @@ public class Move : MonoBehaviour {
         return pathNodes;
     }
 
+    /// <summary>
+    /// Cast a linecast 
+    /// </summary>
+    /// <param name="start">start of line</param>
+    /// <param name="end">end of line</param>
+    /// <returns>Hit GameObject</returns>
     private GameObject CastLineToLocation(Vector3 start, Vector3 end)
     {
         RaycastHit hitInfo;
@@ -133,16 +163,13 @@ public class Move : MonoBehaviour {
         return null;
     }
 
+    /// <summary>
+    /// Get the current node to which the object has to move
+    /// </summary>
+    /// <returns>Node if there is atarget, null if not</returns>
     private Node GetCurrentTarget()
     {
-        if(pathNodes.Count > 0)
-        {
-            return pathNodes[0];
-        }
-        else
-        {
-            return null;
-        }
+        return pathNodes.Count > 0 ? pathNodes[0] : null;
     }
 
     /// <summary>

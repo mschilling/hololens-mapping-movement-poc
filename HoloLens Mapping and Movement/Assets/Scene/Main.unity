@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d883c0118351e4890753200e0ac916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomModel: {fileID: 100026, guid: cc07fe39865b9674ea64bc80adc9a53e, type: 3}
+  RoomModel: {fileID: 100002, guid: 507ff014a152ce24c97c549f1ff51e0c, type: 3}
   SimulatedUpdatePeriodInSeconds: 1
 --- !u!1 &1387128062
 GameObject:
