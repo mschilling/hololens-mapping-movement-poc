@@ -184,7 +184,13 @@ public class Move : MonoBehaviour {
 
         if(GetCurrentTarget().target.y > transform.position.y)
         {
-            return true;
+            foreach(RaycastHit ray in Physics.SphereCastAll(transform.position, maxJumpSpeed * 0.1f, Vector3.forward, maxJumpSpeed * 0.1f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.UseGlobal))
+            {
+                if(ray.collider.gameObject.Equals(GetCurrentTarget().gameObject))
+                {
+                    return true;
+                }
+            }
         }
 
         return false;
