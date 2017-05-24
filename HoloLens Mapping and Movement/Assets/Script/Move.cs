@@ -78,7 +78,7 @@ public class Move : MonoBehaviour {
 
         // Normalize it and account for movement speed.
         moveDirection = GetCurrentTarget().target - transform.position;
-        moveDirection = moveDirection * speed;
+        moveDirection = moveDirection.normalized * speed;
 
         // Make sure it is not magically able to fly
         moveDirection.y = transform.position.y;
@@ -182,7 +182,7 @@ public class Move : MonoBehaviour {
         Node currTarget = GetCurrentTarget();
         Collider collider = currTarget.gameObject.GetComponent<Collider>();
 
-        if(GetCurrentTarget().target.x > transform.position.x && (transform.position - GetCurrentTarget().target).sqrMagnitude < 10 * 10)
+        if(GetCurrentTarget().target.y > transform.position.y)
         {
             return true;
         }
