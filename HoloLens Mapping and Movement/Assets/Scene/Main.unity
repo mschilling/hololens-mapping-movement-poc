@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceObjectPrefabs:
-  - {fileID: 1789152600053408, guid: 4698ca616b9c1744a93e87120585eb80, type: 2}
+  - {fileID: 1464393368174936, guid: 6a1c850469b3fbf498d181dd81445359, type: 2}
 --- !u!1 &1895488531
 GameObject:
   m_ObjectHideFlags: 0
