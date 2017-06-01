@@ -32,6 +32,7 @@ public class Move : MonoBehaviour {
             if ((transform.position - GetCurrentTarget().target).sqrMagnitude < 0.1 * 0.1)
             {
                 Debug.Log("Arrived at a point, so imma better delete it");
+                TextManager.Instance.LetCatSpeak("Ik ben gearriveerd.");
                 pathNodes.RemoveAt(0);
                 return;
             }
@@ -60,6 +61,7 @@ public class Move : MonoBehaviour {
     public void MoveToLocation(GameObject hitObject, Vector3 target)
     {
         Debug.Log("Moving player object from: " + transform.position.ToString("F4") + " to : " + target.ToString("F4"));
+        TextManager.Instance.LetCatSpeak("Oke ik ga er heen.");
 
         Node node = new Node(hitObject, target);
         CalculatePathToTarget(node);
