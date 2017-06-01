@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 using System;
 
 public class GestureSelection : MonoBehaviour, IInputClickHandler {
@@ -35,6 +36,8 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
             if(player != null)
             {
                 Debug.Log("Found player object!");
+                TextManager.Instance.LetCatSpeak("Ik kom eraan!");
+                TextManager.Instance.LetCatSpeak("Klik met je vingers om mij te bewegen.");
                 playerMove = player.GetComponent<Move>();
             }
         }

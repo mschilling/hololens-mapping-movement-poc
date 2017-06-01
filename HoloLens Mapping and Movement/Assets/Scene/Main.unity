@@ -165,8 +165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 530, y: 195}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 580, y: 190}
+  m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288008021
 MonoBehaviour:
@@ -189,7 +189,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Typing...
 --- !u!222 &288008022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 387, y: 195}
+  m_AnchoredPosition: {x: 400, y: 195}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670804759
@@ -438,22 +438,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010560871102, guid: d379ed0a5618c9f479f58bd83a2d0ad3,
     type: 2}
   m_PrefabInternal: {fileID: 980115509}
---- !u!1 &980115511 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011021619270, guid: d379ed0a5618c9f479f58bd83a2d0ad3,
-    type: 2}
-  m_PrefabInternal: {fileID: 980115509}
---- !u!114 &980115512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 980115511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a9aa846cbfd5940806ee1ee61cf0bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &980115517 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20000013304850028, guid: d379ed0a5618c9f479f58bd83a2d0ad3,
@@ -828,6 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549292006}
   - component: {fileID: 1549292007}
+  - component: {fileID: 1549292008}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -864,6 +849,18 @@ MonoBehaviour:
   playSpaceManager: {fileID: 1789514125}
   input: {fileID: 245253722}
   camera: {fileID: 980115517}
+--- !u!114 &1549292008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549292005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdb19d3b3b2772469fdc63661f49dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catText: {fileID: 288008021}
 --- !u!1 &1789514121
 GameObject:
   m_ObjectHideFlags: 0
