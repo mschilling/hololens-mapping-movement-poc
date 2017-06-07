@@ -44,9 +44,6 @@ public class Move : MonoBehaviour {
     // Is called every frame
     void Update()
     {
-        // Update the previous locations array
-        UpdatePreviousLocations();
-
         // Check if object is defined to be reset
         if(hasToReset)
         {
@@ -55,6 +52,9 @@ public class Move : MonoBehaviour {
         // Else check if object has to move to a node
         else if (pathNodes.Count > 0)
         {
+            // Update the previous locations array
+            UpdatePreviousLocations();
+
             if ((transform.position - GetCurrentTarget().target).sqrMagnitude < 0.1 * 0.1)
             {
                 Debug.Log("Arrived at a point, so imma better delete it");
@@ -123,6 +123,11 @@ public class Move : MonoBehaviour {
 
         // Make sure it is not magically able to fly
         moveDirection.y = transform.position.y;
+        if(!isMoving)
+        {
+            // If the object can't move try to move him up 1th of its own size
+            moveDirection.y += (transform.lossyScale.y / 10) + gravity;
+        }
 
         Debug.Log("Is grounded: " + controller.isGrounded);
         Debug.Log("Has to jump: " + HasToJump());
@@ -144,8 +149,8 @@ public class Move : MonoBehaviour {
         // Keep on walking...
         ApplyGravity();
         
-        Debug.Log("Current Y value: " + transform.position.y + " -> Target Y value: " + moveDirection.y);
-        Debug.Log("Substract value: " + gravity * Time.deltaTime);
+        //Debug.Log("Current Y value: " + transform.position.y + " -> Target Y value: " + moveDirection.y);
+        //Debug.Log("Substract value: " + gravity * Time.deltaTime);
 
         controller.Move(moveDirection * Time.deltaTime);
     }
@@ -229,7 +234,7 @@ public class Move : MonoBehaviour {
         Node currTarget = GetCurrentTarget();
         Collider collider = currTarget.gameObject.GetComponent<Collider>();
 
-        if(GetCurrentTarget().target.y > transform.position.y)
+        if(GetCurrentTarget().target.y > (transform.position.y + (transform.lossyScale.y / 10)))
         {
             foreach(RaycastHit ray in Physics.SphereCastAll(transform.position, maxJumpSpeed * 0.1f, Vector3.forward, maxJumpSpeed * 0.1f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.UseGlobal))
             {
@@ -271,6 +276,8 @@ public class Move : MonoBehaviour {
                 isMoving = false;
             }
         }
+
+        Debug.Log("Is moving? => " + isMoving);
     }
 
     /// <summary>
