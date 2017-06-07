@@ -132,7 +132,7 @@ public class Move : MonoBehaviour {
         Debug.Log("Is grounded: " + controller.isGrounded);
         Debug.Log("Has to jump: " + HasToJump());
         // Make sure the object is not in mid air
-        if (controller.isGrounded && HasToJump())
+        if (controller.isGrounded && HasToJump() && jumpSpeed <= 0)
         {
             // Not yet jumping but object has to jump to reach plane
             Debug.Log("Jumping time!");
