@@ -125,7 +125,7 @@ public class Move : MonoBehaviour {
         moveDirection.y = transform.position.y;
         if(!isMoving)
         {
-            // If the object can't move try to move him up 1th of its own size
+            // If the object can't move try to move him up 1/10th of its own size
             moveDirection.y += (transform.lossyScale.y / 10) + gravity;
         }
 
