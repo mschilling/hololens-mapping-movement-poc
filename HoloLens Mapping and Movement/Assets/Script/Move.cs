@@ -18,6 +18,10 @@ public class Move : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
 
+    private bool hasToReset;
+    // Cannot be set in start method as position on creation will be (0,0,0)
+    private Vector3 startPosition; 
+
     // Use this for initialization
     void Start () {
         pathNodes = new List<Node>();
@@ -25,9 +29,16 @@ public class Move : MonoBehaviour {
         gravity = minGravity;
 	}
 
+    // Is called every frame
     void Update()
     {
-        if (pathNodes.Count > 0)
+        // Check if object is defined to be reset
+        if(hasToReset)
+        {
+            ResetObjectState();
+        }
+        // Else check if object has to move to a node
+        else if (pathNodes.Count > 0)
         {
             if ((transform.position - GetCurrentTarget().target).sqrMagnitude < 0.1 * 0.1)
             {
@@ -41,6 +52,7 @@ public class Move : MonoBehaviour {
                 MoveMethod();
             }
         }
+        // If not moving check if in air
         else if(!controller.isGrounded)
         {
             // Reset the MoveVector
@@ -58,8 +70,20 @@ public class Move : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Move object to location
+    /// </summary>
+    /// <param name="hitObject">Object from the target location</param>
+    /// <param name="target">Target location</param>
     public void MoveToLocation(GameObject hitObject, Vector3 target)
     {
+        // Check if startposition has to be set as a variable for resetting
+        if (startPosition == Vector3.zero)
+        {
+            startPosition = transform.position;
+            Debug.Log("Startposition: " + startPosition.ToString());
+        }
+
         Debug.Log("Moving player object from: " + transform.position.ToString("F4") + " to : " + target.ToString("F4"));
         TextManager.Instance.LetCatSpeak("Oke ik ga er heen.");
 
@@ -111,11 +135,17 @@ public class Move : MonoBehaviour {
         controller.Move(moveDirection * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Let object jump
+    /// </summary>
     private void Jump()
     {
         transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Apply gravity to object
+    /// </summary>
     private void ApplyGravity()
     {
         gravity += minGravity;
@@ -123,10 +153,10 @@ public class Move : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Calculate a path to the target location
     /// </summary>
-    /// <param name="target"></param>
-    /// <returns></returns>
+    /// <param name="target">Target location</param>
+    /// <returns>List of nodes to get to the target location</returns>
     private List<Node> CalculatePathToTarget(Node node)
     {
         pathNodes.Clear();
@@ -196,5 +226,24 @@ public class Move : MonoBehaviour {
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Set reset bool to be triggerd in next update
+    /// </summary>
+    public void Reset()
+    {
+        hasToReset = true;
+    }
+
+    /// <summary>
+    /// Reset object to begin state
+    /// </summary>
+    private void ResetObjectState()
+    {
+        hasToReset = false;
+
+        transform.position = startPosition;
+        pathNodes.Clear();
     }
 }
