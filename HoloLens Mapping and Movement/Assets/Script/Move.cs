@@ -20,18 +20,33 @@ public class Move : MonoBehaviour {
 
     private bool hasToReset;
     // Cannot be set in start method as position on creation will be (0,0,0)
-    private Vector3 startPosition; 
+    private Vector3 startPosition;
+
+    // Variables to check if object is not stuck
+    private float noMovementThreshold = 0.0001f;
+    private const int noMovementFrames = 3;
+    Vector3[] previousLocations = new Vector3[noMovementFrames];
+    private bool isMoving;
 
     // Use this for initialization
     void Start () {
         pathNodes = new List<Node>();
         controller = GetComponent<CharacterController>();
         gravity = minGravity;
-	}
+
+        // Fill the previousLocations array
+        for (int i = 0; i < previousLocations.Length; i++)
+        {
+            previousLocations[i] = Vector3.zero;
+        }
+    }
 
     // Is called every frame
     void Update()
     {
+        // Update the previous locations array
+        UpdatePreviousLocations();
+
         // Check if object is defined to be reset
         if(hasToReset)
         {
@@ -229,6 +244,36 @@ public class Move : MonoBehaviour {
     }
 
     /// <summary>
+    /// Update the previous locations array and set the isMoving bool 
+    /// </summary>
+    private void UpdatePreviousLocations()
+    {
+        // Store the newest vector at the end of the list of vectors
+        for (int i = 0; i < previousLocations.Length - 1; i++)
+        {
+            previousLocations[i] = previousLocations[i + 1];
+        }
+        previousLocations[previousLocations.Length - 1] = transform.position;
+
+        // Check the distances between the points in your previous locations
+        // If for the past several updates, there are no movements smaller than the threshold,
+        // you can most likely assume that the object is not moving
+        for (int i = 0; i < previousLocations.Length - 1; i++)
+        {
+            if (Vector3.Distance(previousLocations[i], previousLocations[i + 1]) >= noMovementThreshold)
+            {
+                // The minimum movement has been detected between frames
+                isMoving = true;
+                break;
+            }
+            else
+            {
+                isMoving = false;
+            }
+        }
+    }
+
+    /// <summary>
     /// Set reset bool to be triggerd in next update
     /// </summary>
     public void Reset()
@@ -245,5 +290,13 @@ public class Move : MonoBehaviour {
 
         transform.position = startPosition;
         pathNodes.Clear();
+    }
+
+    /// <summary>
+    /// Get method for isMoving
+    /// </summary>
+    private bool IsMoving
+    {
+        get { return isMoving; }
     }
 }
