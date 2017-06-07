@@ -36,8 +36,8 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
             if(player != null)
             {
                 Debug.Log("Found player object!");
-                TextManager.Instance.LetCatSpeak("Ik kom eraan!");
-                TextManager.Instance.LetCatSpeak("Klik met je vingers om mij te bewegen.");
+
+                CallPlayer();
                 playerMove = player.GetComponent<Move>();
             }
         }
@@ -54,6 +54,17 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
         else
         {
             CastRayToWorld();
+        }
+    }
+
+    public void ResetPlayer()
+    {
+        Debug.Log("Reset");
+
+        if (playSpaceManager.finishedScanning())
+        {
+            CallPlayer();
+            playerMove.Reset();
         }
     }
 
@@ -74,5 +85,12 @@ public class GestureSelection : MonoBehaviour, IInputClickHandler {
 
             playerMove.MoveToLocation(hitInfo.collider.gameObject, hitPoint);
         }
+    }
+
+    private void CallPlayer()
+    {
+        TextManager.Instance.LetCatSpeak("Ik kom eraan!");
+        TextManager.Instance.LetCatSpeak("Als ik vast zit zeg \"Reset\" om mij te resetten.");
+        TextManager.Instance.LetCatSpeak("Klik met je vingers om mij te bewegen.");
     }
 }

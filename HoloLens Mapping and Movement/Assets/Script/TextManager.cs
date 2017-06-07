@@ -14,7 +14,7 @@ public class TextManager : Singleton<TextManager>
     private bool isCoroutineExecuting = false;
     private float delayerTimer = 1.5f;
     private float delayReadTimer = 2f;
-    private string catIsTyping = "Typing...";
+    private string catIsTyping = "Miauw...";
 
     // Use this for initialization
     void Start () {
@@ -22,12 +22,20 @@ public class TextManager : Singleton<TextManager>
         LetCatSpeak("Hallo! Om te beginnen, scan de ruimte. Klik met je vingers om verder te gaan.");
 	}
     
+    /// <summary>
+    /// Let cat give feedback to user with given string
+    /// String will be added to queue
+    /// </summary>
+    /// <param name="userFeedback">String to be used for feedback to user</param>
     public void LetCatSpeak(string userFeedback)
     {
         userFeedBackQueue.Enqueue(userFeedback);
         CallUserFeedback();
     }
 
+    /// <summary>
+    /// Start coroutine for showing feedback
+    /// </summary>
     private void CallUserFeedback()
     {
         Debug.Log("Feedback");
@@ -39,6 +47,13 @@ public class TextManager : Singleton<TextManager>
         }
     }
 
+    /// <summary>
+    /// Feedback coroutine
+    /// 
+    /// Always first show start feedback for given time
+    /// Then show next string in queue
+    /// </summary>
+    /// <returns>Nothing</returns>
     private IEnumerator ShowUserFeedback()
     {
         isCoroutineExecuting = true;
