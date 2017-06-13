@@ -116,6 +116,15 @@ public class Move : MonoBehaviour {
     /// </summary>
     private void MoveMethod()
     {
+        // Make sure the object can still reach the target point
+        if(!CheckIfTargetIsReachable())
+        {
+            // If the point can't be reached, delete it from the list and notify the user
+            pathNodes.RemoveAt(0);
+            TextManager.Instance.LetCatSpeak("Ik kan het punt niet bereiken..!");
+            return;
+        }
+
         // Make sure the object is facing the target at all times
         Vector3 targetLook = GetCurrentTarget().target;
         targetLook.y = transform.position.y;
