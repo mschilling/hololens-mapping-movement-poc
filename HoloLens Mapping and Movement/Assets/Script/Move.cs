@@ -25,6 +25,10 @@ public class Move : MonoBehaviour {
     // Variables to check if object is not stuck
     private float noMovementThreshold = 0.0001f;
     private const int noMovementFrames = 3;
+    private const int maxStuckFrames = 5;
+    private int stuckFrames = 0;
+    private const int maxJumpTries = 2;
+    private int jumpTries = 0;
     Vector3[] previousLocations = new Vector3[noMovementFrames];
     private bool isMoving;
 
@@ -137,6 +141,7 @@ public class Move : MonoBehaviour {
             // Not yet jumping but object has to jump to reach plane
             Debug.Log("Jumping time!");
             jumpSpeed = maxJumpSpeed;
+            jumpTries += 1;
             Jump();         
         }
         else if(jumpSpeed > 0)
@@ -246,6 +251,24 @@ public class Move : MonoBehaviour {
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Check if object is still moving and on point to reach the target location
+    /// </summary>
+    /// <returns>true is object still might be able to reach target location</returns>
+    private bool CheckIfTargetIsReachable()
+    {
+        if (!isMoving)
+        {
+            stuckFrames += 1;
+        }
+        else
+        {
+            stuckFrames = 0;
+        }
+
+        return (jumpTries >= maxJumpTries || stuckFrames >= maxStuckFrames);
     }
 
     /// <summary>
