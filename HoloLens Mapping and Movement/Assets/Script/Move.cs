@@ -128,7 +128,7 @@ public class Move : MonoBehaviour {
         {
             // If the point can't be reached, delete it from the list and notify the user
             pathNodes.RemoveAt(0);
-            TextManager.Instance.LetCatSpeak("Ik kan het punt niet bereiken..");
+            TextManager.Instance.LetCatSpeak("Ik kan er niet bij..");
             return;
         }
 
