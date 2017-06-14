@@ -23,8 +23,13 @@ public class Move : MonoBehaviour {
     private Vector3 startPosition;
 
     // Variables to check if object is not stuck
-    private float noMovementThreshold = 0.0001f;
+    private const float noMovementThreshold = 0.0001f;
     private const int noMovementFrames = 3;
+    private const int maxStuckFrames = 5;
+    private int stuckFrames = 0;
+    private const int maxJumpTries = 2;
+    private Vector3 jumpStartPosition = Vector3.zero;
+    private int jumpTries = 0;
     Vector3[] previousLocations = new Vector3[noMovementFrames];
     private bool isMoving;
 
@@ -82,6 +87,12 @@ public class Move : MonoBehaviour {
         if(controller.isGrounded)
         {
             gravity = minGravity;
+
+            // If object is grounded, not going to jump and it's horizontal position is different from the jumpStartPosition reset jumpTries
+            if(jumpSpeed <= 0 && !WithinMovementThreshold(transform.position, jumpStartPosition))
+            {
+                jumpTries = 0;
+            }
         }
     }
 
@@ -112,6 +123,15 @@ public class Move : MonoBehaviour {
     /// </summary>
     private void MoveMethod()
     {
+        // Make sure the object can still reach the target point
+        if(!CheckIfTargetIsReachable())
+        {
+            // If the point can't be reached, delete it from the list and notify the user
+            pathNodes.RemoveAt(0);
+            TextManager.Instance.LetCatSpeak("Ik kan er niet bij..");
+            return;
+        }
+
         // Make sure the object is facing the target at all times
         Vector3 targetLook = GetCurrentTarget().target;
         targetLook.y = transform.position.y;
@@ -137,6 +157,8 @@ public class Move : MonoBehaviour {
             // Not yet jumping but object has to jump to reach plane
             Debug.Log("Jumping time!");
             jumpSpeed = maxJumpSpeed;
+            jumpTries += 1;
+            jumpStartPosition = transform.position;
             Jump();         
         }
         else if(jumpSpeed > 0)
@@ -180,6 +202,8 @@ public class Move : MonoBehaviour {
     private List<Node> CalculatePathToTarget(Node node)
     {
         pathNodes.Clear();
+        stuckFrames = 0;
+        jumpTries = 0;
 
         Vector3 currPos = gameObject.transform.position;
 
@@ -249,6 +273,27 @@ public class Move : MonoBehaviour {
     }
 
     /// <summary>
+    /// Check if object is still moving and on point to reach the target location
+    /// </summary>
+    /// <returns>true is object still might be able to reach target location</returns>
+    private bool CheckIfTargetIsReachable()
+    {
+        if (!isMoving)
+        {
+            stuckFrames += 1;
+        }
+        else
+        {
+            stuckFrames = 0;
+        }
+
+        Debug.Log("Jump tries: " + jumpTries + " / Stuck frames: " + stuckFrames);
+        Debug.Log("Can I reach a target? => Max jump tries? " + (jumpTries >= maxJumpTries) + " => Max stuck frames? " + (stuckFrames >= maxStuckFrames));
+
+        return (jumpTries < maxJumpTries && stuckFrames < maxStuckFrames);
+    }
+
+    /// <summary>
     /// Update the previous locations array and set the isMoving bool 
     /// </summary>
     private void UpdatePreviousLocations()
@@ -265,7 +310,7 @@ public class Move : MonoBehaviour {
         // you can most likely assume that the object is not moving
         for (int i = 0; i < previousLocations.Length - 1; i++)
         {
-            if (Vector3.Distance(previousLocations[i], previousLocations[i + 1]) >= noMovementThreshold)
+            if(!WithinMovementThreshold(previousLocations[i], previousLocations[i + 1]))
             {
                 // The minimum movement has been detected between frames
                 isMoving = true;
@@ -305,5 +350,16 @@ public class Move : MonoBehaviour {
     private bool IsMoving
     {
         get { return isMoving; }
+    }
+
+    /// <summary>
+    /// A helper method to check if two vectors are between a movement threshold
+    /// </summary>
+    /// <param name="one">First Vector3 for comparison</param>
+    /// <param name="two">Second Vector3 for comparison</param>
+    /// <returns></returns>
+    private bool WithinMovementThreshold(Vector3 one, Vector3 two)
+    {
+        return Vector3.Distance(one, two) < noMovementThreshold;
     }
 }
