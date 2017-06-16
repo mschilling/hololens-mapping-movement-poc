@@ -379,6 +379,9 @@ public class Move : MonoBehaviour {
         return Vector3.Distance(one, two) < noMovementThreshold;
     }
 
+    /// <summary>
+    /// Reset all triggers before a new animation to avoid mixups
+    /// </summary>
     private void resetPlayerAnimations()
     {
         animator.ResetTrigger("playerWalk");
@@ -386,18 +389,27 @@ public class Move : MonoBehaviour {
         animator.ResetTrigger("playerIdle");
     }
 
+    /// <summary>
+    /// Start the object idle animation
+    /// </summary>
     private void setPlayerIdleAnimation()
     {
         resetPlayerAnimations();
         animator.SetTrigger("playerIdle");
     }
 
+    /// <summary>
+    /// Start the object walk animation
+    /// </summary>
     private void setPlayerWalkAnimation()
     {
         resetPlayerAnimations();
         animator.SetTrigger("playerWalk");
     }
 
+    /// <summary>
+    /// Start the object jump animation
+    /// </summary>
     private void setPlayerJumpAnimation()
     {
         resetPlayerAnimations();
