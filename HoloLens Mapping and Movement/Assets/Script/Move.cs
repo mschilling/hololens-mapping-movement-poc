@@ -97,6 +97,12 @@ public class Move : MonoBehaviour {
             if(jumpSpeed <= 0 && !WithinMovementThreshold(transform.position, jumpStartPosition))
             {
                 jumpTries = 0;
+
+                // Stopped jumping but has not arrived yet, so continue walk animation
+                if (GetCurrentTarget() != null)
+                {
+                    setPlayerWalkAnimation();
+                }
             }
         }
     }
@@ -351,6 +357,7 @@ public class Move : MonoBehaviour {
 
         transform.position = startPosition;
         pathNodes.Clear();
+        setPlayerIdleAnimation();
     }
 
     /// <summary>
@@ -393,7 +400,7 @@ public class Move : MonoBehaviour {
 
     private void setPlayerJumpAnimation()
     {
-        animator.ResetTrigger("playerIdle");
+        resetPlayerAnimations();
         animator.SetTrigger("playerJump");
     }
 }
