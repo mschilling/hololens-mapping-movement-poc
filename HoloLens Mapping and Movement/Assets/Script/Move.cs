@@ -6,6 +6,9 @@ public class Move : MonoBehaviour {
     // List of nodes which the object has to move to
     List<Node> pathNodes;
 
+    // Reference to object animation
+    private Animator animator;
+
     // Object movement speed
     public float speed = 0.5f;
     // Object max jump height
@@ -37,6 +40,7 @@ public class Move : MonoBehaviour {
     void Start () {
         pathNodes = new List<Node>();
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         gravity = minGravity;
 
         // Fill the previousLocations array
@@ -65,6 +69,7 @@ public class Move : MonoBehaviour {
                 Debug.Log("Arrived at a point, so imma better delete it");
                 TextManager.Instance.LetCatSpeak("Ik ben gearriveerd.");
                 pathNodes.RemoveAt(0);
+                setPlayerIdleAnimation();
                 return;
             }
             else
@@ -115,6 +120,8 @@ public class Move : MonoBehaviour {
 
         Node node = new Node(hitObject, target);
         CalculatePathToTarget(node);
+
+        setPlayerWalkAnimation();
     }
 
     /// <summary>
@@ -129,6 +136,7 @@ public class Move : MonoBehaviour {
             // If the point can't be reached, delete it from the list and notify the user
             pathNodes.RemoveAt(0);
             TextManager.Instance.LetCatSpeak("Ik kan er niet bij..");
+            setPlayerIdleAnimation();
             return;
         }
 
@@ -182,6 +190,7 @@ public class Move : MonoBehaviour {
     /// </summary>
     private void Jump()
     {
+        setPlayerJumpAnimation();
         transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
     }
 
@@ -361,5 +370,30 @@ public class Move : MonoBehaviour {
     private bool WithinMovementThreshold(Vector3 one, Vector3 two)
     {
         return Vector3.Distance(one, two) < noMovementThreshold;
+    }
+
+    private void resetPlayerAnimations()
+    {
+        animator.ResetTrigger("playerWalk");
+        animator.ResetTrigger("playerJump");
+        animator.ResetTrigger("playerIdle");
+    }
+
+    private void setPlayerIdleAnimation()
+    {
+        resetPlayerAnimations();
+        animator.SetTrigger("playerIdle");
+    }
+
+    private void setPlayerWalkAnimation()
+    {
+        resetPlayerAnimations();
+        animator.SetTrigger("playerWalk");
+    }
+
+    private void setPlayerJumpAnimation()
+    {
+        animator.ResetTrigger("playerIdle");
+        animator.SetTrigger("playerJump");
     }
 }
