@@ -159,8 +159,6 @@ namespace HoloToolkit.Unity.SpatialMapping
                     // If the plane is too high to be considered part of the floor, classify it as a table.
                     PlaneType = PlaneTypes.Table;
                 }
-
-                gameObject.layer = LayerMask.NameToLayer("Ground");
             }
             else if (SurfaceNormal.y <= -(UpNormalThreshold))
             {
@@ -171,14 +169,12 @@ namespace HoloToolkit.Unity.SpatialMapping
                 {
                     // If the plane is not high enough to be considered part of the ceiling, classify it as a table.
                     PlaneType = PlaneTypes.Table;
-                    gameObject.layer = LayerMask.NameToLayer("Ground");
                 }
             }
             else if (Mathf.Abs(SurfaceNormal.y) <= (1 - UpNormalThreshold))
             {
                 // If the plane is vertical, then classify it as a wall.
                 PlaneType = PlaneTypes.Wall;
-                gameObject.layer = LayerMask.NameToLayer("Wall");
             }
             else
             {

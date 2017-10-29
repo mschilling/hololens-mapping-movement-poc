@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement", "HoloLens Mapping and Movement.csproj", "{C7FE4C1A-4391-14E1-C956-DA2F0196CEE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens Mapping and Movement.Editor", "HoloLens Mapping and Movement.Editor.csproj", "{103E0FB6-DAC8-9E71-285E-097DF76B6114}"
