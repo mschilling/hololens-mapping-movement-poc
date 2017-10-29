@@ -377,7 +377,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6fd2bd50da613434caa00a4336f3ac37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a6a5559a87879b4ead8525b5c60c5b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d883c0118351e4890753200e0ac916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomModel: {fileID: 100002, guid: 507ff014a152ce24c97c549f1ff51e0c, type: 3}
+  RoomModel: {fileID: 100002, guid: 4c229063080db1b45846519f618e71d4, type: 3}
   SimulatedUpdatePeriodInSeconds: 1
 --- !u!1001 &1412787532
 Prefab:
@@ -821,6 +821,8 @@ GameObject:
   - component: {fileID: 1549292006}
   - component: {fileID: 1549292007}
   - component: {fileID: 1549292008}
+  - component: {fileID: 1549292010}
+  - component: {fileID: 1549292009}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -854,9 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dea80a31fc1964797d1e5e8f7cbf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSpaceManager: {fileID: 1789514125}
-  input: {fileID: 245253722}
-  camera: {fileID: 980115517}
 --- !u!114 &1549292008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,7 +867,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdb19d3b3b2772469fdc63661f49dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1549292009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549292005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5013b4d3bd477345a4bc2008e047eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   catText: {fileID: 288008021}
+--- !u!114 &1549292010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549292005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f63e75ce2584b240a966c065f6c08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSpaceManager: {fileID: 1789514127}
+  input: {fileID: 245253722}
+  camera: {fileID: 980115517}
 --- !u!1 &1789514121
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +905,8 @@ GameObject:
   - component: {fileID: 1789514124}
   - component: {fileID: 1789514123}
   - component: {fileID: 1789514126}
+  - component: {fileID: 1789514127}
+  - component: {fileID: 1789514128}
   m_Layer: 0
   m_Name: Spatial Processing
   m_TagString: Untagged
@@ -940,10 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19b8bdcc5cd35e4a9e4310644389406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
-  secondaryMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
-  minimumFloors: 1
-  minimumWalls: 1
 --- !u!114 &1789514126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,8 +977,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a26e11e3e3f62042ad40cbb779ba66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1789514127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1789514121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b576841fc0e07cf47b01e34d744b9bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 0}
+  secondaryMaterial: {fileID: 0}
+  minimumFloors: 1
+  minimumWalls: 1
+--- !u!114 &1789514128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1789514121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d103c786561364f9066fd8cc48dd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   spaceObjectPrefabs:
-  - {fileID: 1464393368174936, guid: 6a1c850469b3fbf498d181dd81445359, type: 2}
+  - {fileID: 1464393368174936, guid: 8054a11c8d3d6e74b95cd382e96ff929, type: 2}
 --- !u!1 &1895488531
 GameObject:
   m_ObjectHideFlags: 0
