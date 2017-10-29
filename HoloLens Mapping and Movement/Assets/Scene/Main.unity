@@ -727,7 +727,7 @@ MonoBehaviour:
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1549292007}
+        - m_Target: {fileID: 0}
           m_MethodName: ResetPlayer
           m_Mode: 1
           m_Arguments:
@@ -819,8 +819,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1549292006}
-  - component: {fileID: 1549292007}
-  - component: {fileID: 1549292008}
   - component: {fileID: 1549292010}
   - component: {fileID: 1549292009}
   m_Layer: 0
@@ -845,28 +843,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1549292007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1549292005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86dea80a31fc1964797d1e5e8f7cbf2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1549292008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1549292005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbdb19d3b3b2772469fdc63661f49dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1549292009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,10 +877,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1789514122}
-  - component: {fileID: 1789514125}
   - component: {fileID: 1789514124}
   - component: {fileID: 1789514123}
-  - component: {fileID: 1789514126}
   - component: {fileID: 1789514127}
   - component: {fileID: 1789514128}
   m_Layer: 0
@@ -955,28 +929,6 @@ MonoBehaviour:
   MinArea: 0.025
   drawPlanesMask: 0
   destroyPlanesMask: 16
---- !u!114 &1789514125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1789514121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19b8bdcc5cd35e4a9e4310644389406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1789514126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1789514121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a26e11e3e3f62042ad40cbb779ba66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1789514127
 MonoBehaviour:
   m_ObjectHideFlags: 0
